@@ -1,21 +1,33 @@
 <section data-ng-controller="HomeController">
 	<div class="jumbotron text-center">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-				<img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/img/brand/logo.png" />
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<p class="lead">
-				Open-Source Full-Stack Solution For MEAN Applications
-			</p>
-		</div>
-		<div class="row">
-			<p>
-				<a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Turn On Lights!!!</a>
-			</p>
-		</div>
+		<!--<div class="row">-->
+			<!--<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">-->
+				<!--<img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/img/brand/logo.png" />-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<br>-->
+		<!--<div class="row">-->
+			<!--<p class="lead">-->
+				<!--Open-Source Full-Stack Solution For MEAN Applications-->
+			<!--</p>-->
+		<!--</div>-->
+		<!--<div class="row">-->
+			<!--<p>-->
+				<!--<a class="btn btn-primary btn-lg" ng-click="lightButton()" target="_blank">Turn On Lights!!!</a>-->
+			<!--</p>-->
+		<!--</div>-->
+        <table>
+            <h3>IoT - Domotics</h3>
+            <tr>
+                <td>
+                    <p class="lead">
+                        <img ng-if="!lightFlag" style="margin-top:4%;" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                        <img ng-if="lightFlag" style="margin-bottom:4%;" src="modules/core/img/items/light-on.png" alt="Light"><br>
+                    </p>
+                    <p><a id="switchButton" class="btn btn-lg btn-success" ng-click="lightButton()">turn on</a></p>
+                </td>
+            </tr>
+        </table>
 	</div>
 	<div>
 		<h2>Congrats! You've configured and ran the sample application successfully.</h2>
