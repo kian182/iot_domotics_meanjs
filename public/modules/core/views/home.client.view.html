@@ -1,4 +1,14 @@
+<style>
+    .table-border {
+          border: 1px solid rgba(150,134,170,.5);
+          background: rgb(238,238,238);
+    }
+    .table-item{
+        width: 50%;
+    }
+</style>
 <section data-ng-controller="HomeController">
+    <h4 style="text-align: center;">IoT - Domotics</h4>
 	<div class="jumbotron text-center">
 		<!--<div class="row">-->
 			<!--<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">-->
@@ -16,91 +26,129 @@
 				<!--<a class="btn btn-primary btn-lg" ng-click="lightButton()" target="_blank">Turn On Lights!!!</a>-->
 			<!--</p>-->
 		<!--</div>-->
-        <table>
-            <h3>IoT - Domotics</h3>
-            <tr>
-                <td>
-                    <p class="lead">
-                        <img ng-if="!lightFlag" style="margin-top:4%;" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                        <img ng-if="lightFlag" style="margin-bottom:4%;" src="modules/core/img/items/light-on.png" alt="Light"><br>
-                    </p>
-                    <p><a id="switchButton" class="btn btn-lg btn-success" ng-click="lightButton()">turn on</a></p>
-                </td>
-            </tr>
-        </table>
+
+        <div class="row">
+            <div class="table-border col-xs-6 col-sm-4">
+                <p class="lead">
+                    <img class="table-item" ng-if="!lightFlag1" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                    <img class="table-item" ng-if="lightFlag1"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                </p>
+                <p><a id="switchButton1" class="btn btn-lg btn-success" ng-click="lightButton(1)">turn on</a></p>
+            </div>
+            <div class="table-border col-xs-6 col-sm-4">
+                <p class="lead">
+                    <img class="table-item" ng-if="!lightFlag2" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                    <img class="table-item" ng-if="lightFlag2"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                </p>
+                <p><a id="switchButton2" class="btn btn-lg btn-success" ng-click="lightButton(2)">turn on</a></p>
+            </div>
+            <!-- Optional: clear the XS cols if their content doesn't match in height -->
+            <div class="table-border clearfix visible-xs-block"></div>
+            <div class="table-border col-xs-6 col-sm-4">
+                <p class="lead">
+                    <img class="table-item" ng-if="!lightFlag3" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                    <img class="table-item" ng-if="lightFlag3"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                </p>
+                <p><a id="switchButton3" class="btn btn-lg btn-success" ng-click="lightButton(3)">turn on</a></p>
+            </div>
+            <div class="table-border col-xs-6 col-sm-4">
+                <p class="lead">
+                    <img class="table-item" ng-if="!lightFlag4" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                    <img class="table-item" ng-if="lightFlag4"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                </p>
+                <p><a id="switchButton4" class="btn btn-lg btn-success" ng-click="lightButton(4)">turn on</a></p>
+            </div>
+            <div class="table-border clearfix visible-xs-block"></div>
+            <div class="table-border col-xs-6 col-sm-4">
+                <p class="lead">
+                    <img class="table-item" ng-if="!lightFlag5" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                    <img class="table-item" ng-if="lightFlag5"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                </p>
+                <p><a id="switchButton5" class="btn btn-lg btn-success" ng-click="lightButton(5)">turn on</a></p>
+            </div>
+            <div class="table-border col-xs-6 col-sm-4">
+                <p class="lead">
+                    <img class="table-item" ng-if="!lightFlag6" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                    <img class="table-item" ng-if="lightFlag6"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                </p>
+                <p><a id="switchButton6" class="btn btn-lg btn-success" ng-click="lightButton(6)">turn on</a></p>
+            </div>
+        </div>
+
 	</div>
-	<div>
-		<h2>Congrats! You've configured and ran the sample application successfully.</h2>
-		<p>MEAN.JS is a web application boilerplate, which means you should start changing everything :-)</p>
-		<p>This sample application tracks users and articles.</p>
-		<ul>
-			<li>
-				Click
-				<em>Signup</em>
-				to get started.
-			</li>
-			<li>
-				Configure your app to work with your social accounts, by editing the
-				<em>/config/env/*.js</em>
-				files.
-			</li>
-			<li>
-				Edit your users module.
-			</li>
-			<li>
-				Add new CRUD modules.
-			</li>
-			<li>
-				Have fun...
-			</li>
-		</ul>
-	</div>
-	<div class="row">
-		<div class="col-md-3">
-			<h2>
-				<strong>M</strong>ongoDB
-			</h2>
-			<p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>
-		</div>
-		<div class="col-md-3">
-			<h2>
-				<strong>E</strong>xpress
-			</h2>
-			<p><a target="_blank" href="http://expressjs.com/"> Express</a> is an app server. Check out <a target="_blank" href="http://expressjs.com/4x/api.html">The ExpressJS API reference for more information</a> or <a target="_blank" href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a> for more info.</p>
-		</div>
-		<div class="col-md-3">
-			<h2>
-				<strong>A</strong>ngularJS
-			</h2>
-			<p>AngularJS is web app framework. <a target="_blank" href="http://angularjs.org/">Angular's website</a> offers a lot. The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.</p>
-		</div>
-		<div class="col-md-3">
-			<h2>
-				<strong>N</strong>ode.js
-			</h2>
-			<p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a web server. Node's website and this <a target="_blank" href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow thread</a> offer excellent starting points to get to grasps with node.</p>
-		</div>
-	</div>
-	<div class="well">
-		<h2>MEAN.JS Documentation</h2>
-		<p>
-			Once you're familiar with the foundation technology, check out the MEAN.JS Documentation:
-			<ul>
-				<li><a target="_blank" href="http://meanjs.org/docs.html">MEAN.JS Documentation</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/generator.html">Yeoman Generator</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/modules.html">Modules</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/changelog.html">Changelog</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/community.html">Community</a>
-				</li>
-				<li><a target="_blank" href="http://blog.meanjs.org">Blog</a>
-				</li>
-			</ul>
-		</p>
-	</div>
-	<br>Enjoy &amp; Keep Us Updated,
-	<br>The MEAN.JS Team.
+
+	<!--<div>-->
+		<!--<h2>Congrats! You've configured and ran the sample application successfully.</h2>-->
+		<!--<p>MEAN.JS is a web application boilerplate, which means you should start changing everything :-)</p>-->
+		<!--<p>This sample application tracks users and articles.</p>-->
+		<!--<ul>-->
+			<!--<li>-->
+				<!--Click-->
+				<!--<em>Signup</em>-->
+				<!--to get started.-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--Configure your app to work with your social accounts, by editing the-->
+				<!--<em>/config/env/*.js</em>-->
+				<!--files.-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--Edit your users module.-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--Add new CRUD modules.-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--Have fun...-->
+			<!--</li>-->
+		<!--</ul>-->
+	<!--</div>-->
+	<!--<div class="row">-->
+		<!--<div class="col-md-3">-->
+			<!--<h2>-->
+				<!--<strong>M</strong>ongoDB-->
+			<!--</h2>-->
+			<!--<p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>-->
+		<!--</div>-->
+		<!--<div class="col-md-3">-->
+			<!--<h2>-->
+				<!--<strong>E</strong>xpress-->
+			<!--</h2>-->
+			<!--<p><a target="_blank" href="http://expressjs.com/"> Express</a> is an app server. Check out <a target="_blank" href="http://expressjs.com/4x/api.html">The ExpressJS API reference for more information</a> or <a target="_blank" href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a> for more info.</p>-->
+		<!--</div>-->
+		<!--<div class="col-md-3">-->
+			<!--<h2>-->
+				<!--<strong>A</strong>ngularJS-->
+			<!--</h2>-->
+			<!--<p>AngularJS is web app framework. <a target="_blank" href="http://angularjs.org/">Angular's website</a> offers a lot. The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.</p>-->
+		<!--</div>-->
+		<!--<div class="col-md-3">-->
+			<!--<h2>-->
+				<!--<strong>N</strong>ode.js-->
+			<!--</h2>-->
+			<!--<p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a web server. Node's website and this <a target="_blank" href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow thread</a> offer excellent starting points to get to grasps with node.</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div class="well">-->
+		<!--<h2>MEAN.JS Documentation</h2>-->
+		<!--<p>-->
+			<!--Once you're familiar with the foundation technology, check out the MEAN.JS Documentation:-->
+			<!--<ul>-->
+				<!--<li><a target="_blank" href="http://meanjs.org/docs.html">MEAN.JS Documentation</a>-->
+				<!--</li>-->
+				<!--<li><a target="_blank" href="http://meanjs.org/generator.html">Yeoman Generator</a>-->
+				<!--</li>-->
+				<!--<li><a target="_blank" href="http://meanjs.org/modules.html">Modules</a>-->
+				<!--</li>-->
+				<!--<li><a target="_blank" href="http://meanjs.org/changelog.html">Changelog</a>-->
+				<!--</li>-->
+				<!--<li><a target="_blank" href="http://meanjs.org/community.html">Community</a>-->
+				<!--</li>-->
+				<!--<li><a target="_blank" href="http://blog.meanjs.org">Blog</a>-->
+				<!--</li>-->
+			<!--</ul>-->
+		<!--</p>-->
+	<!--</div>-->
+	<!--<br>Enjoy &amp; Keep Us Updated,-->
+	<!--<br>The MEAN.JS Team.-->
 </section>

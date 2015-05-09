@@ -6,7 +6,12 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
-        $scope.lightFlag = false;
+        $scope.lightFlag1 = false;
+        $scope.lightFlag2 = false;
+        $scope.lightFlag3 = false;
+        $scope.lightFlag4 = false;
+        $scope.lightFlag5 = false;
+        $scope.lightFlag6 = false;
         $scope.lightOnCount = 0;
         $scope.lightOffCount = 0;
 
@@ -25,21 +30,45 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             ('#status').html('disconnected');
         });
 
-        $scope.lightButton = function(){
+        var switchLightFlags = function(id,value){
+            switch(id) {
+                case 1:
+                    $scope.lightFlag1 = value;
+                    break;
+                case 2:
+                    $scope.lightFlag2 = value;
+                    break;
+                case 3:
+                    $scope.lightFlag3 = value;
+                    break;
+                case 4:
+                    $scope.lightFlag4 = value;
+                    break;
+                case 5:
+                    $scope.lightFlag5 = value;
+                    break;
+                case 6:
+                    $scope.lightFlag6 = value;
+                    break;
+            }
+        };
 
-            var messageFlag = $('#switchButton').text();
-            var message = $('#switchButton').text();
-            console.log(message)
+        $scope.lightButton = function(option){
+            $scope.lightFlag=false;
+            console.log(option);
+            var buttonId = "#switchButton"+option;
+            var messageFlag = $(buttonId).text();
+            var message = $(buttonId).text()+' '+option;
             socket.send(message);
 //            $('#messages').append('<li>me: ' + message + '</li>');
             if (messageFlag == 'turn on'){
-                $('#switchButton').text('turn off');
-                $scope.lightFlag = true;
+                $(buttonId).text('turn off');
+                switchLightFlags(option,true);
                 $scope.lightOnCount++;
             }
             else{
-                $('#switchButton').text('turn on');
-                $scope.lightFlag = false;
+                $(buttonId).text('turn on');
+                switchLightFlags(option,false);
                 $scope.lightOffCount++;
             }
             console.log("Works");
