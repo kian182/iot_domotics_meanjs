@@ -15,7 +15,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         $scope.lightOnCount = 0;
         $scope.lightOffCount = 0;
 
-        var socket = io.connect('http://200.105.186.139:80');
+        var socket = io.connect('http://186.121.219.194:80');
 
         socket.on('connect', function() {
             $('#messages').html('Connected to the server.');
