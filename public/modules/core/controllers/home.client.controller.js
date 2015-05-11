@@ -6,6 +6,18 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
+        $scope.tabs = [
+            { paneId: 'tab01', title: 'Room 1', content: 'Tab Number 1 Content', active: true, disabled: false },
+            { paneId: 'tab02', title: 'Room 2', content: 'Tab Number 2 Content', active: false, disabled: false },
+            { paneId: 'tab03', title: 'Room 3', content: 'Tab Number 3 Content', active: false, disabled: false },
+            { paneId: 'tab04', title: 'Living Room', content: 'Tab Number 4 Content', active: false, disabled: false },
+            { paneId: 'tab05', title: 'Kitchen', content: 'Tab Number 5 Content', active: false, disabled: false }
+        ];
+
+        $scope.swipe = function($event) {
+            console.log($event);
+        };
+
         $scope.lightFlag1 = false;
         $scope.lightFlag2 = false;
         $scope.lightFlag3 = false;
@@ -15,7 +27,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         $scope.lightOnCount = 0;
         $scope.lightOffCount = 0;
 
-        var socket = io.connect('http://186.121.219.194:80');
+        var socket = io.connect('http://186.121.197.167:80');
+//        var socket = io.connect('http://192.168.0.102');
 
         socket.on('connect', function() {
             $('#messages').html('Connected to the server.');
