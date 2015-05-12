@@ -1,7 +1,8 @@
 <style>
+    /*Bootstrapp Styles*/
     .table-border {
-          border: 1px solid rgba(150,134,170,.5);
-          background: rgb(238,238,238);
+        border: 1px solid rgba(150,134,170,.5);
+        background: rgb(238,238,238);
     }
     .table-item{
         width: 50%;
@@ -34,71 +35,261 @@
         color: #FFFFFF;
         background: rgb(47,164,231);
     }
-    .scrtabs-tab-container {
-        margin-top:-15%;
+    .navbar-inverse .navbar-toggle:hover,
+    .navbar-inverse .navbar-toggle:focus {
+        background-color: rgb(47,164,231);
     }
+    /*Angular Tabs*/
+    .scrtabs-tab-container {
+        margin-top: -51px;
+    }
+    /*Clear Panels*/
+    .tab-content{
+        clear: both;
+    }
+    .tab-panel{
+        margin-top: 10px;
+    }
+    .tab-panel-sec{
+        margin-top: -10px;
+    }
+    /*Switch*/
+    .switch {
+        float: right;
+        font: 13px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 76px;
+        height: 30px;
+        padding: 3px;
+        background-color: white;
+        border-radius: 18px;
+        box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        background-image: -webkit-linear-gradient(top, #eeeeee, white 25px);
+        background-image: -moz-linear-gradient(top, #eeeeee, white 25px);
+        background-image: -o-linear-gradient(top, #eeeeee, white 25px);
+        background-image: linear-gradient(to bottom, #eeeeee, white 25px);
+    }
+
+    .switch-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    .switch-label {
+        position: relative;
+        display: block;
+        height: inherit;
+        font-size: 10px;
+        text-transform: uppercase;
+        background: #eceeef;
+        border-radius: inherit;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+        -webkit-transition: 0.15s ease-out;
+        -moz-transition: 0.15s ease-out;
+        -o-transition: 0.15s ease-out;
+        transition: 0.15s ease-out;
+        -webkit-transition-property: opacity background;
+        -moz-transition-property: opacity background;
+        -o-transition-property: opacity background;
+        transition-property: opacity background;
+    }
+    .switch-label:before, .switch-label:after {
+        position: absolute;
+        top: 50%;
+        margin-top: -.5em;
+        line-height: 1;
+        -webkit-transition: inherit;
+        -moz-transition: inherit;
+        -o-transition: inherit;
+        transition: inherit;
+    }
+    .switch-label:before {
+        content: attr(data-off);
+        right: 11px;
+        color: #aaa;
+        text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+    }
+    .switch-label:after {
+        content: attr(data-on);
+        left: 11px;
+        color: white;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+    }
+    .switch-input:checked ~ .switch-label {
+        background: #47a8d8;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+    }
+    .switch-input:checked ~ .switch-label:before {
+        opacity: 0;
+    }
+    .switch-input:checked ~ .switch-label:after {
+        opacity: 1;
+    }
+
+    .switch-handle {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 27px;
+        height: 27px;
+        background: white;
+        border-radius: 150px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        background-image: -webkit-linear-gradient(top, white 40%, #f0f0f0);
+        background-image: -moz-linear-gradient(top, white 40%, #f0f0f0);
+        background-image: -o-linear-gradient(top, white 40%, #f0f0f0);
+        background-image: linear-gradient(to bottom, white 40%, #f0f0f0);
+        -webkit-transition: left 0.15s ease-out;
+        -moz-transition: left 0.15s ease-out;
+        -o-transition: left 0.15s ease-out;
+        transition: left 0.15s ease-out;
+    }
+    .switch-handle:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -6px 0 0 -6px;
+        width: 12px;
+        height: 12px;
+        background: #f9f9f9;
+        border-radius: 6px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+        background-image: -webkit-linear-gradient(top, #eeeeee, white);
+        background-image: -moz-linear-gradient(top, #eeeeee, white);
+        background-image: -o-linear-gradient(top, #eeeeee, white);
+        background-image: linear-gradient(to bottom, #eeeeee, white);
+    }
+    .switch-input:checked ~ .switch-handle {
+        left: 44px;
+        box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .switch-green > .switch-input:checked ~ .switch-label {
+        background: #4fb845;
+    }
+
 </style>
 
 <section data-ng-controller="HomeController">
     <div scrolling-tabs-wrapper>
-
         <tabset>
             <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
-                {{tab.content}}
+                <div class="tab-content">
+                    <div class="tab-panel panel panel-info">
+                        <div style="background: rgb(47,164,231); color: #FFFFFF" class="panel-heading">
+                            <h3 class="panel-title">Luces</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover" id="task-table">
+                                <tr>
+                                    <td>Light1</td>
+                                    <td>
+                                        <div class="switch-container">
+                                            <label class="switch">
+                                                <input id="light1" value="light1" type="checkbox" class="switch-input" checked>
+                                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                <span class="switch-handle"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Light2</td>
+                                    <td>
+                                        <div class="switch-container">
+                                            <label class="switch">
+                                                <input id="light2" value="light2" type="checkbox" class="switch-input" checked>
+                                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                <span class="switch-handle"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-panel-sec panel panel-info">
+                        <div style="background: rgb(47,164,231); color: #FFFFFF" class="panel-heading">
+                            <h3 class="panel-title">Puertas</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover" id="task-table">
+                                <tr>
+                                    <td>Door1</td>
+                                    <td>
+                                        <div class="switch-container">
+                                            <label class="switch">
+                                                <input id="door1" value="door1" type="checkbox" class="switch-input" checked>
+                                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                <span class="switch-handle"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="jumbotron text-center">
+
+                        <div class="row">
+                            <div class="table-border col-xs-6 col-sm-4">
+                                <p class="lead">
+                                    <img class="table-item" ng-if="!lightFlag1" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                                    <img class="table-item" ng-if="lightFlag1"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                                </p>
+                                <p><a id="switchButton1" class="btn btn-lg btn-success" ng-click="lightButton(1)">turn on</a></p>
+                            </div>
+                            <div class="table-border col-xs-6 col-sm-4">
+                                <p class="lead">
+                                    <img class="table-item" ng-if="!lightFlag2" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                                    <img class="table-item" ng-if="lightFlag2"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                                </p>
+                                <p><a id="switchButton2" class="btn btn-lg btn-success" ng-click="lightButton(2)">turn on</a></p>
+                            </div>
+                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                            <div class="table-border clearfix visible-xs-block"></div>
+                            <div class="table-border col-xs-6 col-sm-4">
+                                <p class="lead">
+                                    <img class="table-item" ng-if="!lightFlag3" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                                    <img class="table-item" ng-if="lightFlag3"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                                </p>
+                                <p><a id="switchButton3" class="btn btn-lg btn-success" ng-click="lightButton(3)">turn on</a></p>
+                            </div>
+                            <div class="table-border col-xs-6 col-sm-4">
+                                <p class="lead">
+                                    <img class="table-item" ng-if="!lightFlag4" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                                    <img class="table-item" ng-if="lightFlag4"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                                </p>
+                                <p><a id="switchButton4" class="btn btn-lg btn-success" ng-click="lightButton(4)">turn on</a></p>
+                            </div>
+                            <div class="table-border clearfix visible-xs-block"></div>
+                            <div class="table-border col-xs-6 col-sm-4">
+                                <p class="lead">
+                                    <img class="table-item" ng-if="!lightFlag5" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                                    <img class="table-item" ng-if="lightFlag5"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                                </p>
+                                <p><a id="switchButton5" class="btn btn-lg btn-success" ng-click="lightButton(5)">turn on</a></p>
+                            </div>
+                            <div class="table-border col-xs-6 col-sm-4">
+                                <p class="lead">
+                                    <img class="table-item" ng-if="!lightFlag6" src="modules/core/img/items/light-off.png" alt="Light"><br>
+                                    <img class="table-item" ng-if="lightFlag6"  src="modules/core/img/items/light-on.png" alt="Light"><br>
+                                </p>
+                                <p><a id="switchButton6" class="btn btn-lg btn-success" ng-click="lightButton(6)">turn on</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </tab>
         </tabset>
-
     </div>
-    <h4 style="text-align: center;">IoT - Domotics</h4>
-	<div class="jumbotron text-center">
 
-        <div class="row">
-            <div class="table-border col-xs-6 col-sm-4">
-                <p class="lead">
-                    <img class="table-item" ng-if="!lightFlag1" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                    <img class="table-item" ng-if="lightFlag1"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                </p>
-                <p><a id="switchButton1" class="btn btn-lg btn-success" ng-click="lightButton(1)">turn on</a></p>
-            </div>
-            <div class="table-border col-xs-6 col-sm-4">
-                <p class="lead">
-                    <img class="table-item" ng-if="!lightFlag2" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                    <img class="table-item" ng-if="lightFlag2"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                </p>
-                <p><a id="switchButton2" class="btn btn-lg btn-success" ng-click="lightButton(2)">turn on</a></p>
-            </div>
-            <!-- Optional: clear the XS cols if their content doesn't match in height -->
-            <div class="table-border clearfix visible-xs-block"></div>
-            <div class="table-border col-xs-6 col-sm-4">
-                <p class="lead">
-                    <img class="table-item" ng-if="!lightFlag3" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                    <img class="table-item" ng-if="lightFlag3"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                </p>
-                <p><a id="switchButton3" class="btn btn-lg btn-success" ng-click="lightButton(3)">turn on</a></p>
-            </div>
-            <div class="table-border col-xs-6 col-sm-4">
-                <p class="lead">
-                    <img class="table-item" ng-if="!lightFlag4" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                    <img class="table-item" ng-if="lightFlag4"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                </p>
-                <p><a id="switchButton4" class="btn btn-lg btn-success" ng-click="lightButton(4)">turn on</a></p>
-            </div>
-            <div class="table-border clearfix visible-xs-block"></div>
-            <div class="table-border col-xs-6 col-sm-4">
-                <p class="lead">
-                    <img class="table-item" ng-if="!lightFlag5" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                    <img class="table-item" ng-if="lightFlag5"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                </p>
-                <p><a id="switchButton5" class="btn btn-lg btn-success" ng-click="lightButton(5)">turn on</a></p>
-            </div>
-            <div class="table-border col-xs-6 col-sm-4">
-                <p class="lead">
-                    <img class="table-item" ng-if="!lightFlag6" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                    <img class="table-item" ng-if="lightFlag6"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                </p>
-                <p><a id="switchButton6" class="btn btn-lg btn-success" ng-click="lightButton(6)">turn on</a></p>
-            </div>
-        </div>
-
-	</div>
 </section>
