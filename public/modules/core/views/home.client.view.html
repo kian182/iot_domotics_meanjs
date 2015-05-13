@@ -180,20 +180,79 @@
 <section data-ng-controller="HomeController">
     <div scrolling-tabs-wrapper>
         <tabset>
-            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled" ng-click="panelView(tab.title)">
+                    <!-- Room1 -->
+                    <div ng-if="panelRoom1" class="all-container">
+                        <div style="clear:both;" class="tab-panel panel panel-info">
+                            <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
+                                <h3 class="panel-title">Luces</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>Light1</td>
+                                        <td>
+                                            <div class="switch-container">
+                                                <label class="switch">
+                                                    <input id="light1" ng-model="lightStatus1" ng-click="lightButton(lightStatus1,1)" value="light1" type="checkbox" class="switch-input" checked>
+                                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Light2</td>
+                                        <td>
+                                            <div class="switch-container">
+                                                <label class="switch">
+                                                    <input id="light2" value="light2" ng-model="lightStatus2" ng-click="lightButton(lightStatus2,2)" type="checkbox" class="switch-input" checked>
+                                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-panel-sec panel panel-info">
+                            <div style="background: rgb(47,164,231); color: #FFFFFF" class="panel-heading">
+                                <h3 class="panel-title">Puertas</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>Door1</td>
+                                        <td>
+                                            <div class="switch-container">
+                                                <label class="switch">
+                                                    <input id="door1" value="door1" type="checkbox" class="switch-input" checked>
+                                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
+                <!-- Room2 -->
+                <div ng-if="panelRoom2" class="all-container">
                     <div style="clear:both;" class="tab-panel panel panel-info">
                         <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
                             <h3 class="panel-title">Luces</h3>
                         </div>
                         <div class="panel-body">
-                            <table class="table" id="task-table">
+                            <table class="table">
                                 <tr>
-                                    <td>Light1</td>
+                                    <td>Light3</td>
                                     <td>
                                         <div class="switch-container">
                                             <label class="switch">
-                                                <input id="light1" ng-model="lightStatus1" ng-click="lightButton(lightStatus1,1)" value="light1" type="checkbox" class="switch-input" checked>
+                                                <input id="light3" ng-model="lightStatus3" ng-click="lightButton(lightStatus3,3)" value="light3" type="checkbox" class="switch-input" checked>
                                                 <span class="switch-label" data-on="On" data-off="Off"></span>
                                                 <span class="switch-handle"></span>
                                             </label>
@@ -201,11 +260,57 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Light2</td>
+                                    <td>Light4</td>
                                     <td>
                                         <div class="switch-container">
                                             <label class="switch">
-                                                <input id="light2" value="light2" ng-model="lightStatus2" ng-click="lightButton(lightStatus2,2)" type="checkbox" class="switch-input" checked>
+                                                <input id="light4" value="light4" ng-model="lightStatus4" ng-click="lightButton(lightStatus4,4)" type="checkbox" class="switch-input" checked>
+                                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                <span class="switch-handle"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-panel-sec panel panel-info">
+                        <div style="background: rgb(47,164,231); color: #FFFFFF" class="panel-heading">
+                            <h3 class="panel-title">Puertas</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>Door2</td>
+                                    <td>
+                                        <div class="switch-container">
+                                            <label class="switch">
+                                                <input id="door2" value="door2" type="checkbox" class="switch-input" checked>
+                                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                <span class="switch-handle"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 3 -->
+                <div ng-if="panelRoom3" class="all-container">
+                    <div style="clear:both;" class="tab-panel panel panel-info">
+                        <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
+                            <h3 class="panel-title">Luces</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table" id="task-table">
+                                <tr>
+                                    <td>Light5</td>
+                                    <td>
+                                        <div class="switch-container">
+                                            <label class="switch">
+                                                <input id="light5" ng-model="lightStatus5" ng-click="lightButton(lightStatus5,5)" value="light5" type="checkbox" class="switch-input" checked>
                                                 <span class="switch-label" data-on="On" data-off="Off"></span>
                                                 <span class="switch-handle"></span>
                                             </label>
@@ -222,11 +327,11 @@
                         <div class="panel-body">
                             <table class="table table-hover" id="task-table">
                                 <tr>
-                                    <td>Door1</td>
+                                    <td>Door3</td>
                                     <td>
                                         <div class="switch-container">
                                             <label class="switch">
-                                                <input id="door1" value="door1" type="checkbox" class="switch-input" checked>
+                                                <input id="door3" value="door3" type="checkbox" class="switch-input" checked>
                                                 <span class="switch-label" data-on="On" data-off="Off"></span>
                                                 <span class="switch-handle"></span>
                                             </label>
@@ -236,56 +341,56 @@
                             </table>
                         </div>
                     </div>
-                    <div class="jumbotron text-center">
+                </div>
 
-                        <div class="row">
-                            <div class="table-border col-xs-6 col-sm-4">
-                                <p class="lead">
-                                    <img class="table-item" ng-if="!lightFlag1" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                                    <img class="table-item" ng-if="lightFlag1"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                                </p>
-                                <p><a id="switchButton1" class="btn btn-lg btn-success" ng-click="lightButton(1)">turn on</a></p>
+                    <!-- Living Room -->
+                    <div ng-if="panelLvRoom" class="all-container">
+                        <div style="clear:both;" class="tab-panel panel panel-info">
+                            <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
+                                <h3 class="panel-title">Luces</h3>
                             </div>
-                            <div class="table-border col-xs-6 col-sm-4">
-                                <p class="lead">
-                                    <img class="table-item" ng-if="!lightFlag2" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                                    <img class="table-item" ng-if="lightFlag2"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                                </p>
-                                <p><a id="switchButton2" class="btn btn-lg btn-success" ng-click="lightButton(2)">turn on</a></p>
-                            </div>
-                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                            <div class="table-border clearfix visible-xs-block"></div>
-                            <div class="table-border col-xs-6 col-sm-4">
-                                <p class="lead">
-                                    <img class="table-item" ng-if="!lightFlag3" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                                    <img class="table-item" ng-if="lightFlag3"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                                </p>
-                                <p><a id="switchButton3" class="btn btn-lg btn-success" ng-click="lightButton(3)">turn on</a></p>
-                            </div>
-                            <div class="table-border col-xs-6 col-sm-4">
-                                <p class="lead">
-                                    <img class="table-item" ng-if="!lightFlag4" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                                    <img class="table-item" ng-if="lightFlag4"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                                </p>
-                                <p><a id="switchButton4" class="btn btn-lg btn-success" ng-click="lightButton(4)">turn on</a></p>
-                            </div>
-                            <div class="table-border clearfix visible-xs-block"></div>
-                            <div class="table-border col-xs-6 col-sm-4">
-                                <p class="lead">
-                                    <img class="table-item" ng-if="!lightFlag5" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                                    <img class="table-item" ng-if="lightFlag5"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                                </p>
-                                <p><a id="switchButton5" class="btn btn-lg btn-success" ng-click="lightButton(5)">turn on</a></p>
-                            </div>
-                            <div class="table-border col-xs-6 col-sm-4">
-                                <p class="lead">
-                                    <img class="table-item" ng-if="!lightFlag6" src="modules/core/img/items/light-off.png" alt="Light"><br>
-                                    <img class="table-item" ng-if="lightFlag6"  src="modules/core/img/items/light-on.png" alt="Light"><br>
-                                </p>
-                                <p><a id="switchButton6" class="btn btn-lg btn-success" ng-click="lightButton(6)">turn on</a></p>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>Light6</td>
+                                        <td>
+                                            <div class="switch-container">
+                                                <label class="switch">
+                                                    <input id="light6" ng-model="lightStatus6" ng-click="lightButton(lightStatus6,6)" value="light5" type="checkbox" class="switch-input" checked>
+                                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
+                    </div>
 
+                    <!-- Kitchen -->
+                    <div ng-if="panelKitchen" class="all-container">
+                        <div style="clear:both;" class="tab-panel panel panel-info">
+                            <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
+                                <h3 class="panel-title">Luces</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>Light7</td>
+                                        <td>
+                                            <div class="switch-container">
+                                                <label class="switch">
+                                                    <input id="light7" ng-model="lightStatus7" ng-click="lightButton(lightStatus7,7)" value="light7" type="checkbox" class="switch-input" checked>
+                                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
             </tab>
         </tabset>
