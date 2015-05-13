@@ -5,6 +5,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 	function($scope, Authentication) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
+        $scope.lightStatus1 = false ;
+        $scope.lightStatus2 = false ;
 
         $scope.tabs = [
             { paneId: 'tab01', title: 'Room 1', content: 'Tab Number 1 Content', active: true, disabled: false },
@@ -14,16 +16,30 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             { paneId: 'tab05', title: 'Kitchen', content: 'Tab Number 5 Content', active: false, disabled: false }
         ];
 
+        $scope.changeDetect1 = function(id){
+          console.log('Change Detected');
+            //console.log('id: '+id);
+            if (id){
+                console.log('On');
+            }else{
+                console.log('Off');
+            }
+        };
+
+        $scope.changeDetect2 = function(id){
+            console.log('Change Detected');
+            //console.log('id: '+id);
+            if (id){
+                console.log('On');
+            }else{
+                console.log('Off');
+            }
+        };
+
         $scope.swipe = function($event) {
             console.log($event);
         };
 
-        $scope.lightFlag1 = false;
-        $scope.lightFlag2 = false;
-        $scope.lightFlag3 = false;
-        $scope.lightFlag4 = false;
-        $scope.lightFlag5 = false;
-        $scope.lightFlag6 = false;
         $scope.lightOnCount = 0;
         $scope.lightOffCount = 0;
 
@@ -46,45 +62,42 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         var switchLightFlags = function(id,value){
             switch(id) {
                 case 1:
-                    $scope.lightFlag1 = value;
+                    $scope.lightStatus1 = value;
                     break;
                 case 2:
-                    $scope.lightFlag2 = value;
+                    $scope.lightStatus2 = value;
                     break;
                 case 3:
-                    $scope.lightFlag3 = value;
+                    $scope.lightStatus3 = value;
                     break;
                 case 4:
-                    $scope.lightFlag4 = value;
+                    $scope.lightStatus4 = value;
                     break;
                 case 5:
-                    $scope.lightFlag5 = value;
+                    $scope.lightStatus5 = value;
                     break;
                 case 6:
-                    $scope.lightFlag6 = value;
+                    $scope.lightStatus6 = value;
                     break;
             }
         };
 
-        $scope.lightButton = function(option){
-            $scope.lightFlag=false;
+        $scope.lightButton = function(status,option){
+            var messageFlag = status? 'turn on':'turn off';
             console.log(option);
-            var buttonId = "#switchButton"+option;
-            var messageFlag = $(buttonId).text();
-            var message = $(buttonId).text()+' '+option;
+            var message = messageFlag+' '+option;
+            console.log('message: '+message);
             socket.send(message);
-//            $('#messages').append('<li>me: ' + message + '</li>');
+            console.log('messageFlag: '+messageFlag);
             if (messageFlag == 'turn on'){
-                $(buttonId).text('turn off');
                 switchLightFlags(option,true);
                 $scope.lightOnCount++;
             }
             else{
-                $(buttonId).text('turn on');
                 switchLightFlags(option,false);
                 $scope.lightOffCount++;
             }
-            console.log("Works");
+            console.log('Works');
         }
 
 	}
