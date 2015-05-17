@@ -5,13 +5,21 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 	function($scope, Authentication) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
+        /*Lights Flags*/
         $scope.lightStatus1 = true;
         $scope.lightStatus2 = true;
+        /*Servo Flags*/
+        $scope.servoStatus1 = false;
+        $scope.servoStatus2 = false;
+        /*Panel Flags*/
         $scope.panelRoom1 = true;
         $scope.panelRoom2 = false;
         $scope.panelRoom3 = false;
         $scope.panelLvRoom = false;
         $scope.panelKitchen = false;
+        /*Temperature*/
+        $scope.temperatureAux="Getting Actual Temperature...";
+        $scope.temperature="";
 
         $scope.tabs = [
             { paneId: 'tab01', title: 'Room 1', content: 'Tab Number 1 Content', active: true, disabled: false },
@@ -20,6 +28,17 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             { paneId: 'tab04', title: 'Living Room', content: 'Tab Number 4 Content', active: false, disabled: false },
             { paneId: 'tab05', title: 'Kitchen', content: 'Tab Number 5 Content', active: false, disabled: false }
         ];
+
+        $scope.safeApply = function(fn) {
+            var phase = this.$root.$$phase;
+            if(phase == '$apply' || phase == '$digest') {
+                if(fn && (typeof(fn) === 'function')) {
+                    fn();
+                }
+            } else {
+                this.$apply(fn);
+            }
+        };
 
         var setPanelFlags = function(room1,room2,room3,lvroom,kitchen){
             $scope.panelRoom1 = room1;
@@ -66,20 +85,15 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         $scope.lightOnCount = 0;
         $scope.lightOffCount = 0;
 
-        var socket = io.connect('http://186.121.229.227:80');
+        var socket = io.connect('http://186.121.219.100:80');
 //        var socket = io.connect('http://192.168.0.102');
 
         socket.on('connect', function() {
             $('#messages').html('Connected to the server.');
         });
 
-        socket.on('message', function(message) {
-            $('#status').html(message);
-        });
-
-        socket.on('disconnect', function() {
-            $('#messages').html('<li>Disconnected from the server.</li>');
-            ('#status').html('disconnected');
+        socket.on('temp', function(data) {
+                $scope.temperatureAux=data;
         });
 
         var switchLightFlags = function(id,value){
@@ -123,6 +137,25 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             console.log('Works');
         }
 
+        $scope.servoMotor = function(status, option){
+            var servoFlag = !status? 'servo on':'servo off';
+            console.log(option);
+            var servoMessage = servoFlag+' '+option;
+            console.log('servoMessage: '+servoMessage);
+            socket.send(servoMessage);
+            console.log('servoFlag: '+servoFlag);
+        };
+
+        var init = function(){
+            setInterval(function(){
+                $scope.safeApply(function() {
+                    $scope.temperature=$scope.temperatureAux;
+                    console.log($scope.temperature);
+                });
+            }, 3000);
+        };
+
+        init();
 	}
 ]);
 

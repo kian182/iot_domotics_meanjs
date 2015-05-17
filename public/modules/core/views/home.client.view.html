@@ -227,7 +227,7 @@
                                         <td>
                                             <div class="switch-container">
                                                 <label class="switch">
-                                                    <input id="door1" value="door1" type="checkbox" class="switch-input" checked>
+                                                    <input id="door1" ng-model="servoStatus1" ng-click="servoMotor(servoStatus1,1)" value="door1" type="checkbox" class="switch-input" checked>
                                                     <span class="switch-label" data-on="On" data-off="Off"></span>
                                                     <span class="switch-handle"></span>
                                                 </label>
@@ -285,7 +285,7 @@
                                     <td>
                                         <div class="switch-container">
                                             <label class="switch">
-                                                <input id="door2" value="door2" type="checkbox" class="switch-input" checked>
+                                                <input id="door2" value="door2" type="checkbox" ng-model="servoStatus2" ng-click="servoMotor(servoStatus2,2)" class="switch-input" checked>
                                                 <span class="switch-label" data-on="On" data-off="Off"></span>
                                                 <span class="switch-handle"></span>
                                             </label>
@@ -378,6 +378,29 @@
                                 <table class="table">
                                     <tr>
                                         <td>Light7</td>
+                                        <td>
+                                            <div class="switch-container">
+                                                <label class="switch">
+                                                    <input id="light7" ng-model="lightStatus7" ng-click="lightButton(lightStatus7,7)" value="light7" type="checkbox" class="switch-input" checked>
+                                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all-container">
+                        <div style="clear:both;" class="tab-panel panel panel-info">
+                            <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
+                                <h3 class="panel-title">Temperature</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>{{temperature}}</td>
                                         <td>
                                             <div class="switch-container">
                                                 <label class="switch">
