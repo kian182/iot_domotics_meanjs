@@ -44,8 +44,8 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
-<body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-inverse navbar-static-top custom-navbar"></header>
+<body class="ng-cloak" data-ng-controller="LayoutController">
+	<header ng-if="loginFlag" data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-inverse navbar-static-top custom-navbar"></header>
 
     <section class="content">
 		<section class="container">

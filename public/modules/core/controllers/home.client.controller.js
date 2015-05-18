@@ -1,10 +1,11 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-	function($scope, Authentication) {
+angular.module('core').controller('HomeController', ['$scope','$rootScope','$timeout', 'Authentication',
+	function($scope, $rootScope, $timeout,  Authentication) {
 		// This provides Authentication context.
-		$scope.authentication = Authentication;
+
+        $scope.authentication = Authentication;
         /*Lights Flags*/
         $scope.lightStatus1 = true;
         $scope.lightStatus2 = true;
@@ -28,17 +29,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             { paneId: 'tab04', title: 'Living Room', content: 'Tab Number 4 Content', active: false, disabled: false },
             { paneId: 'tab05', title: 'Kitchen', content: 'Tab Number 5 Content', active: false, disabled: false }
         ];
-
-        $scope.safeApply = function(fn) {
-            var phase = this.$root.$$phase;
-            if(phase == '$apply' || phase == '$digest') {
-                if(fn && (typeof(fn) === 'function')) {
-                    fn();
-                }
-            } else {
-                this.$apply(fn);
-            }
-        };
 
         var setPanelFlags = function(room1,room2,room3,lvroom,kitchen){
             $scope.panelRoom1 = room1;
@@ -146,13 +136,35 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             console.log('servoFlag: '+servoFlag);
         };
 
-        var init = function(){
-            setInterval(function(){
-                $scope.safeApply(function() {
-                    $scope.temperature=$scope.temperatureAux;
-                    console.log($scope.temperature);
-                });
+        //Safe Apply Function
+        $scope.safeApply = function(fn) {
+            var phase = this.$root.$$phase;
+            if(phase == '$apply' || phase == '$digest') {
+                if(fn && (typeof(fn) === 'function')) {
+                    fn();
+                }
+            } else {
+                this.$apply(fn);
+            }
+        };
+
+        var getTemperature = function(){
+            $timeout(function(){
+                try{
+                    $scope.safeApply(function() {
+                        $scope.temperature=$scope.temperatureAux;
+                        console.log($scope.temperature);
+                        getTemperature();
+                    });
+                }
+                catch(e){
+                    console.log('Log Out');
+                }
             }, 3000);
+        };
+
+        var init = function(){
+            getTemperature();
         };
 
         init();
