@@ -9,6 +9,9 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
         /*Lights Flags*/
         $scope.lightStatus1 = true;
         $scope.lightStatus2 = true;
+        $scope.lightStatus3 = true;
+        $scope.lightStatus4 = true;
+        $scope.lightStatus5 = true;
         /*Servo Flags*/
         $scope.servoStatus1 = false;
         $scope.servoStatus2 = false;
@@ -75,7 +78,7 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
         $scope.lightOnCount = 0;
         $scope.lightOffCount = 0;
 
-        var socket = io.connect('http://186.121.219.100:80');
+        var socket = io.connect('http://192.168.1.102:8080');
 //        var socket = io.connect('http://192.168.0.102');
 
         socket.on('connect', function() {
