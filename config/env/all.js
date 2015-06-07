@@ -56,7 +56,8 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
                 'public/lib/angular-bootstrap-scrolling-tabs/scrolling-tabs.js',
-                'public/lib/angular-swipe/dist/angular-swipe.js'
+                'public/lib/angular-swipe/dist/angular-swipe.js',
+                'public/modules/core/controllers/login.client.controller.js'
             ]
 		},
 		css: [
