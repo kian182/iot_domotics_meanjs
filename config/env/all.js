@@ -57,7 +57,7 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
                 'public/lib/angular-bootstrap-scrolling-tabs/scrolling-tabs.js',
                 'public/lib/angular-swipe/dist/angular-swipe.js',
-                'public/lib/paho/mqttws31.js',
+                'public/modules/core/controllers/login.client.controller.js'
             ]
 		},
 		css: [
