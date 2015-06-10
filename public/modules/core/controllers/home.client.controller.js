@@ -5,31 +5,7 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
 	function($scope, $rootScope, $timeout,  Authentication) {
         //This provides Authentication context.
         $scope.authentication = Authentication;
-        /*Paho Initial Client Variable*/
-        var client = new Paho.MQTT.Client("test.mosca.io", 80, "myclientid_" + parseInt(Math.random() * 100, 10));
-        // set callback handlers
-        client.onConnectionLost = onConnectionLost;
-        client.onMessageArrived = onMessageArrived;
-        // connect the client
-        client.connect({onSuccess:onConnect});
-        // called when the client connects
-        function onConnect() {
-            // Once a connection has been made, make a subscription and send a message.
-            console.log("onConnect");
-            client.subscribe("/iotDomoticsKR182");
-        }
 
-        // called when the client loses its connection
-        function onConnectionLost(responseObject) {
-            if (responseObject.errorCode !== 0) {
-                console.log("onConnectionLost:"+responseObject.errorMessage);
-            }
-        }
-
-        // called when a message arrives
-        function onMessageArrived(message) {
-            console.log("onMessageArrived:"+message.payloadString);
-        }
         /*Lights Flags*/
         $scope.lightStatus1 = true;
         $scope.lightStatus2 = true;
@@ -60,6 +36,53 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
             { paneId: 'tab04', title: 'Living Room', content: '', active: false, disabled: false },
             { paneId: 'tab05', title: 'Kitchen', content: '', active: false, disabled: false }
         ];
+
+        /*Paho Initial Client Variable*/
+        var client = new Paho.MQTT.Client("test.mosca.io", 80, "myclientid_" + parseInt(Math.random() * 100, 10));
+        // set callback handlers
+        client.onConnectionLost = onConnectionLost;
+        client.onMessageArrived = onMessageArrived;
+        // connect the client
+        client.connect({onSuccess:onConnect});
+
+        //Safe Apply Function
+        $scope.safeApply = function(fn) {
+            var phase = this.$root.$$phase;
+            if(phase == '$apply' || phase == '$digest') {
+                if(fn && (typeof(fn) === 'function')) {
+                    fn();
+                }
+            } else {
+                this.$apply(fn);
+            }
+        };
+
+        // called when the client connects
+        function onConnect() {
+            // Once a connection has been made, make a subscription and send a message.
+            console.log("onConnect");
+            client.subscribe("/iotDomoticsKR182");
+        }
+
+        // called when the client loses its connection
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("onConnectionLost:"+responseObject.errorMessage);
+            }
+        }
+
+        // called when a message arrives
+        function onMessageArrived(message) {
+            var arrvMessage = message.payloadString;
+            var dataTemp = arrvMessage.split(",");
+            if(dataTemp[0]==='temp'){
+                var temperature = parseFloat(dataTemp[1]).toFixed(2);;
+                $scope.safeApply(function() {
+                    $scope.temperature=temperature+' °C';
+                });
+            }
+        }
+
 
         var setPanelFlags = function(room1,room2,room3,lvroom,kitchen){
             $scope.panelRoom1 = room1;
