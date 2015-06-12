@@ -81,6 +81,32 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
                     $scope.temperature=temperature+' °C';
                 });
             }
+            else if(dataTemp[0]==='turn'){
+                if(dataTemp[2]==='1'){
+                    $scope.lightStatus1 = (dataTemp[1]==='on');
+                }
+                else if(dataTemp[2]==='2'){
+                    $scope.lightStatus2 = (dataTemp[1]==='on');
+                }
+                else if(dataTemp[2]==='3'){
+                    $scope.lightStatus3 = (dataTemp[1]==='on');
+                }
+                else if(dataTemp[2]==='4'){
+                    $scope.lightStatus4 = (dataTemp[1]==='on');
+                }
+                else if(dataTemp[2]==='5'){
+                    $scope.lightStatus5 = (dataTemp[1]==='on');
+                }
+            }
+            else if(dataTemp[0]==='servo'){
+                if(dataTemp[2]==='1'){
+                    $scope.servoStatus1 = (dataTemp[1]==='on');
+                }
+                else if(dataTemp[2]==='2'){
+                    $scope.servoStatus2 = (dataTemp[1]==='on');
+                }
+            }
+
         }
 
 
@@ -136,14 +162,14 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
         };
 
         $scope.lightButton = function(status,option){
-            var messageFlag = !status? 'turn on':'turn off';
+            var messageFlag = !status? 'turn,on':'turn,off';
             console.log('Option Selected: '+option);
-            var message = messageFlag+' '+option;
+            var message = messageFlag+','+option;
             console.log('message: '+message);
             var pahoMessage = new Paho.MQTT.Message(message);
             pahoMessage.destinationName = "/iotDomoticsKR182";
             client.send(pahoMessage);
-            if (messageFlag == 'turn on'){
+            if (messageFlag == 'turn,on'){
                 switchLightFlags(option,true);
                 $scope.lightOnCount++;
             }
@@ -155,9 +181,9 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
         };
 
         $scope.servoMotor = function(status, option){
-            var servoFlag = !status? 'servo on':'servo off';
+            var servoFlag = !status? 'servo,on':'servo,off';
             console.log(option);
-            var servoMessage = servoFlag+' '+option;
+            var servoMessage = servoFlag+','+option;
             console.log('servoMessage: '+servoMessage);
             var pahoMessage = new Paho.MQTT.Message(servoMessage);
             pahoMessage.destinationName = "/iotDomoticsKR182";
