@@ -191,6 +191,9 @@
         padding-right: 15px;
         padding-left: 15px;
     }
+    .scrtabs-tabs-fixed-container {
+        height: 62px;
+    }
 </style>
 
 <section data-ng-controller="HomeController">
@@ -217,6 +220,10 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!--<tr class="zone-group">-->
+                                        <!--<td class="zone-group">Zone: Room1</td>-->
+                                        <!--<td>Group: Luces</td>-->
+                                    <!--</tr>-->
                                 </table>
                             </div>
                         </div>
@@ -238,6 +245,10 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!--<tr class="zone-group">-->
+                                        <!--<td class="zone-group">Zone: Room1</td>-->
+                                        <!--<td>Group: Puertas</td>-->
+                                    <!--</tr>-->
                                 </table>
                             </div>
                         </div>
@@ -323,7 +334,7 @@
                                     <td>
                                         <div class="switch-container">
                                             <label class="switch">
-                                                <input id="door3" value="door3" type="checkbox" class="switch-input" checked>
+                                                <input id="door3" value="door3" ng-model="servoStatus3" type="checkbox" class="switch-input" ng-click="servoMotor(servoStatus3,3)" checked>
                                                 <span class="switch-label" data-on="On" data-off="Off"></span>
                                                 <span class="switch-handle"></span>
                                             </label>
@@ -392,7 +403,7 @@
                             <div class="panel-body">
                                 <table class="table">
                                     <tr>
-                                        <td>{{temperature}}</td>
+                                        <td style="font-size: 18px;">{{temperature}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -403,3 +414,12 @@
     </div>
 
 </section>
+        <style>
+            .zone-group{
+                font-size: 12px;
+            }
+            .container-last{
+                margin-bottom:-30px;
+            }
+        </style>
+

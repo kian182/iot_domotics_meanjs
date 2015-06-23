@@ -15,6 +15,7 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
         /*Servo Flags*/
         $scope.servoStatus1 = false;
         $scope.servoStatus2 = false;
+        $scope.servoStatus3 = false;
         /*Panel Flags*/
         $scope.panelRoom1 = true;
         $scope.panelRoom2 = false;
@@ -210,109 +211,6 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
         };
 
         init();
-
-//
-//        $scope.changeDetect2 = function(id){
-//            console.log('Change Detected');
-//            //console.log('id: '+id);
-//            if (id){
-//                console.log('On');
-//            }else{
-//                console.log('Off');
-//            }
-//        };
-//
-//        $scope.swipe = function($event) {
-//            console.log($event);
-//        };
-//
-
-//
-//        var socket = io.connect('http://192.168.1.102:8080');
-////        var socket = io.connect('http://192.168.0.102');
-//
-//        socket.on('connect', function() {
-//            $('#messages').html('Connected to the server.');
-//        });
-//
-//        socket.on('temp', function(data) {
-//            $scope.temperatureAux=data;
-//        });
-//
-
-//
-//        $scope.servoMotor = function(status, option){
-//            var servoFlag = !status? 'servo on':'servo off';
-//            console.log(option);
-//            var servoMessage = servoFlag+' '+option;
-//            console.log('servoMessage: '+servoMessage);
-//            socket.send(servoMessage);
-//            console.log('servoFlag: '+servoFlag);
-//        };
-//
-//        //Safe Apply Function
-//        $scope.safeApply = function(fn) {
-//            var phase = this.$root.$$phase;
-//            if(phase == '$apply' || phase == '$digest') {
-//                if(fn && (typeof(fn) === 'function')) {
-//                    fn();
-//                }
-//            } else {
-//                this.$apply(fn);
-//            }
-//        };
-//
-//        var getTemperature = function(){
-//            $timeout(function(){
-//                try{
-//                    $scope.safeApply(function() {
-//                        $scope.temperature=$scope.temperatureAux;
-//                        console.log($scope.temperature);
-//                        getTemperature();
-//                    });
-//                }
-//                catch(e){
-//                    console.log('Log Out');
-//                }
-//            }, 3000);
-//        };
-//
-
-
-        /*-----------------------*/
-//
-//        console.log("myclientid_" + parseInt(Math.random() * 100, 10));
-//        var client = new Paho.MQTT.Client("test.mosca.io", 80, "myclientid_" + parseInt(Math.random() * 100, 10));
-//
-//        // set callback handlers
-//        client.onConnectionLost = onConnectionLost;
-//        client.onMessageArrived = onMessageArrived;
-//
-//        // connect the client
-//        client.connect({onSuccess:onConnect});
-//
-//
-//        // called when the client connects
-//        function onConnect() {
-//            // Once a connection has been made, make a subscription and send a message.
-//            console.log("onConnect");
-//            client.subscribe("/topicKR");
-//            var message = new Paho.MQTT.Message("dimmer");
-//            message.destinationName = "/topicKR";
-//            client.send(message);
-//        }
-//
-//        // called when the client loses its connection
-//        function onConnectionLost(responseObject) {
-//            if (responseObject.errorCode !== 0) {
-//                console.log("onConnectionLost:"+responseObject.errorMessage);
-//            }
-//        }
-//
-//        // called when a message arrives
-//        function onMessageArrived(message) {
-//            console.log("onMessageArrived:"+message.payloadString);
-//        }
 
     }
 ]);
