@@ -25,6 +25,11 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
         /*Temperature*/
         $scope.temperatureAux="Getting Actual Temperature...";
         $scope.temperature=$scope.temperatureAux;
+        $scope.tempContainer = true;
+        /*Reports*/
+        $scope.report1=false;
+        $scope.report2=false;
+        $scope.temperature=$scope.temperatureAux;
         /*Lighs Counters*/
         $scope.lightOnCount = 0;
         $scope.lightOffCount = 0;
@@ -37,6 +42,26 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
             { paneId: 'tab04', title: 'Living Room', content: '', active: false, disabled: false },
             { paneId: 'tab05', title: 'Kitchen', content: '', active: false, disabled: false }
         ];
+
+        $scope.average = {
+            lights: 0,
+            doors: 0,
+            windows: 0,
+            garage: 0,
+            total: 0
+        };
+        $scope.statsOn = {
+            lights: 0,
+            doors: 0,
+            windows: 0,
+            garage: 0
+        };
+        $scope.statsOff = {
+            lights: 0,
+            doors: 0,
+            windows: 0,
+            garage: 0
+        };
 
         /*Paho Initial Client Variable*/
         var client = new Paho.MQTT.Client("test.mosca.io", 80, "myclientid_" + parseInt(Math.random() * 100, 10));
@@ -83,6 +108,14 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
                 });
             }
             else if(dataTemp[0]==='turn'){
+                $scope.average.total += 1;
+                $scope.average.lights += 1;
+                if(dataTemp[1]==='on'){
+                    $scope.statsOn.lights +=1;
+                }
+                if(dataTemp[1]==='off'){
+                    $scope.statsOff.lights +=1;
+                }
                 if(dataTemp[2]==='1'){
                     $scope.lightStatus1 = (dataTemp[1]==='on');
                 }
@@ -100,42 +133,52 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
                 }
             }
             else if(dataTemp[0]==='servo'){
+                $scope.average.total += 1;
                 if(dataTemp[2]==='1'){
+                    $scope.average.doors += 1;
                     $scope.servoStatus1 = (dataTemp[1]==='on');
                 }
                 else if(dataTemp[2]==='2'){
+                    $scope.average.windows += 1;
                     $scope.servoStatus2 = (dataTemp[1]==='on');
+                }
+                else if(dataTemp[2]==='3'){
+                    $scope.average.garage += 1;
+                    $scope.servoStatus3 = (dataTemp[1]==='on');
                 }
             }
 
         }
 
 
-        var setPanelFlags = function(room1,room2,room3,lvroom,kitchen){
+        var setPanelFlags = function(room1,room2,room3,lvroom,kitchen,temp,report1,report2){
             $scope.panelRoom1 = room1;
             $scope.panelRoom2 = room2;
             $scope.panelRoom3 = room3;
             $scope.panelLvRoom = lvroom;
             $scope.panelKitchen = kitchen;
+            $scope.tempContainer = temp;
+            $scope.report1 = report1;
+            $scope.report2 = report2;
         };
 
         $scope.panelView = function(panel){
             console.log(panel);
             if(panel=='Room 1'){
                 console.log('1');
-                setPanelFlags(true,false,false,false,false);
+                setPanelFlags(true,false,false,false,false,true,false,false);
             }else if(panel=='Room 2'){
                 console.log('2');
-                setPanelFlags(false,true,false,false,false);
+                setPanelFlags(false,true,false,false,false,true,false,false);
             }else if(panel =='Room 3'){
                 console.log('3');
-                setPanelFlags(false,false,true,false,false);
+                setPanelFlags(false,false,true,false,false,true,false,false);
             }else if(panel == 'Living Room'){
                 console.log('4');
-                setPanelFlags(false,false,false,true,false);
+                setPanelFlags(false,false,false,true,false,true,false,false);
             }else{
                 console.log('5');
-                setPanelFlags(false,false,false,false,true);
+                setPanelFlags(false,false,false,false,true,true,false,false);
             }
         };
 
@@ -189,6 +232,11 @@ angular.module('core').controller('HomeController', ['$scope','$rootScope','$tim
             var pahoMessage = new Paho.MQTT.Message(servoMessage);
             pahoMessage.destinationName = "/iotDomoticsKR182";
             client.send(pahoMessage);
+        };
+
+        $rootScope.reports = function(){
+            console.log('reports');
+            setPanelFlags(false,false,false,false,false,true,true);
         };
 
         var getTemperature = function(){

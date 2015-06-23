@@ -395,7 +395,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="all-container">
+                    <div ng-if="tempContainer" class="all-container">
                         <div style="clear:both;" class="tab-panel panel panel-info">
                             <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
                                 <h3 class="panel-title">Temperature</h3>
@@ -404,6 +404,37 @@
                                 <table class="table">
                                     <tr>
                                         <td style="font-size: 18px;">{{temperature}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="report1" class="all-container">
+                        <div style="clear:both;" class="tab-panel panel panel-info">
+                            <div style="background: rgb(47,164,231); color: #FFFFFF; margin-top: 10px;" class="panel-heading">
+                                <h3 class="panel-title">Domotics Reports - Use Average</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td style="font-size: 18px;">Lights</td>
+                                        <td style="font-size: 18px;">{{average.lights}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px;">Doors</td>
+                                        <td style="font-size: 18px;">{{average.doors}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px;">Windows</td>
+                                        <td style="font-size: 18px;">{{average.windows}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px;">aGarage</td>
+                                        <td style="font-size: 18px;">{{average.garage}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px;">TOTAL OPERATIONS:</td>
+                                        <td style="font-size: 18px;">{{average.total}}</td>
                                     </tr>
                                 </table>
                             </div>

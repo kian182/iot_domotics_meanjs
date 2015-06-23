@@ -15,7 +15,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$root
                 $scope.authentication.user = response;
 
 				// And redirect to the index page
-				$location.path('/signup');
+				$location.path('/');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
